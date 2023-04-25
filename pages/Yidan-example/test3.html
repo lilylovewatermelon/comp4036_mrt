@@ -6,7 +6,7 @@
 	<script src='../../js/three.js'></script>
 	<script src='../../js/OBJLoader.js'></script>
 	<script src='../../js/MTLLoader.js'></script>
-	<!-- <script src='../../js/GLTFLoader.js'></script> -->
+	<script src='../../js/GLTFLoader.js'></script>
 	<!-- include jsartookit -->
 	<script src="../../jsartoolkit5/artoolkit.min.js"></script>
 	<script src="../../jsartoolkit5/artoolkit.api.js"></script>
@@ -144,22 +144,22 @@ function initialize()
 		onError
 	);
 
-	new THREE.MTLLoader()
-		.setPath( '../../models/puppy/' )
-		.load( 'puppy.mtl', function ( materials ) {
-			materials.preload();
-			new THREE.OBJLoader()
-				.setMaterials( materials )
-				.setPath( '../../models/puppy/' )
-				.load( 'puppy.obj', function ( group ) {
-					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
-					mesh0.position.y = 0.025;
-					mesh0.scale.set(1.25,1.25,1.25);
-					mesh0.rotation.y = Math.PI / 2;
-					markerRoot1.add(mesh0);
-				}, onProgress, onError );
-		});
+	// new THREE.MTLLoader()
+	// 	.setPath( '../../models/puppy/' )
+	// 	.load( 'puppy.mtl', function ( materials ) {
+	// 		materials.preload();
+	// 		new THREE.OBJLoader()
+	// 			.setMaterials( materials )
+	// 			.setPath( '../../models/puppy/' )
+	// 			.load( 'puppy.obj', function ( group ) {
+	// 				mesh0 = group.children[0];
+	// 				mesh0.material.side = THREE.DoubleSide;
+	// 				mesh0.position.y = 0.025;
+	// 				mesh0.scale.set(1.25,1.25,1.25);
+	// 				mesh0.rotation.y = Math.PI / 2;
+	// 				markerRoot1.add(mesh0);
+	// 			}, onProgress, onError );
+	// 	});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }

@@ -123,43 +123,43 @@ function initialize()
 	markerRoot1.add( mesh1 );
 	
 	//now we'll load in the dog complete with material
-	new THREE.GLTFLoader()
-	.load(
-		'../../models/fire/scene.gltf', 
-		// called when the resource is loaded
-		function ( gltf ) {
+	// new THREE.GLTFLoader()
+	// .load(
+	// 	'../../models/fire/scene.gltf', 
+	// 	// called when the resource is loaded
+	// 	function ( gltf ) {
 
-			scene.add( gltf.scene );
+	// 		scene.add( gltf.scene );
 
-			// gltf.animations; // Array<THREE.AnimationClip>
-			// gltf.scene; // THREE.Group
-			// gltf.scenes; // Array<THREE.Group>
-			// gltf.cameras; // Array<THREE.Camera>
-			// gltf.asset; // Object
+	// 		// gltf.animations; // Array<THREE.AnimationClip>
+	// 		// gltf.scene; // THREE.Group
+	// 		// gltf.scenes; // Array<THREE.Group>
+	// 		// gltf.cameras; // Array<THREE.Camera>
+	// 		// gltf.asset; // Object
 
-		},
-		// called while loading is progressing
-		onProgress,
-		// called when loading has errors
-		onError
-	);
+	// 	},
+	// 	// called while loading is progressing
+	// 	onProgress,
+	// 	// called when loading has errors
+	// 	onError
+	// );
 
-	// new THREE.MTLLoader()
-	// 	.setPath( '../../models/puppy/' )
-	// 	.load( 'puppy.mtl', function ( materials ) {
-	// 		materials.preload();
-	// 		new THREE.OBJLoader()
-	// 			.setMaterials( materials )
-	// 			.setPath( '../../models/puppy/' )
-	// 			.load( 'puppy.obj', function ( group ) {
-	// 				mesh0 = group.children[0];
-	// 				mesh0.material.side = THREE.DoubleSide;
-	// 				mesh0.position.y = 0.025;
-	// 				mesh0.scale.set(1.25,1.25,1.25);
-	// 				mesh0.rotation.y = Math.PI / 2;
-	// 				markerRoot1.add(mesh0);
-	// 			}, onProgress, onError );
-	// 	});
+	new THREE.MTLLoader()
+		.setPath( '../../models/puppy/' )
+		.load( 'puppy.mtl', function ( materials ) {
+			materials.preload();
+			new THREE.OBJLoader()
+				.setMaterials( materials )
+				.setPath( '../../models/puppy/' )
+				.load( 'puppy.obj', function ( group ) {
+					mesh0 = group.children[0];
+					mesh0.material.side = THREE.DoubleSide;
+					mesh0.position.y = 0.025;
+					mesh0.scale.set(1.25,1.25,1.25);
+					mesh0.rotation.y = Math.PI / 2;
+					markerRoot1.add(mesh0);
+				}, onProgress, onError );
+		});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }

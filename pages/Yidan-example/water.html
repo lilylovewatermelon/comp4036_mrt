@@ -145,16 +145,17 @@ function initialize()
 	new FBXLoader().load(
 	    '../../models/water/source/water.fbx',
 	    function (object){
-		// object.traverse(function (child) {
-		//     if ((child as THREE.Mesh).isMesh) {
-		//         // (child as THREE.Mesh).material = material
-		//         if ((child as THREE.Mesh).material) {
-		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
-		//         }
-		//     }
-		// })
-		// object.scale.set(.01, .01, .01)
+// 		object.traverse(function (child) {
+// 		    if ((child as THREE.Mesh).isMesh) {
+// 		        // (child as THREE.Mesh).material = material
+// 		        if ((child as THREE.Mesh).material) {
+// 		            ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+// 		        }
+// 		    }
+// 		})
+		
 		mesh0 = object;
+		mesh0.scale.set(.01, .01, .01)
 		markerRoot1.add(mesh0)
 	    }, onProgress, onError);
 

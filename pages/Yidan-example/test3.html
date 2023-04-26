@@ -152,7 +152,7 @@ function initialize()
 				.load( 'firecircle.obj', function ( group ) {
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
-						  //child.material.ambient.setHex(0xFF0000);
+						  child.material.ambient.setHex(0xFF0000);
 						  child.material.color.setHex(0xFC4F00);
 						 }
 					     } );

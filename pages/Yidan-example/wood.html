@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Hello, world!</title>
+	<!-- include three.js library -->
+	<script src='../../js/three.js'></script>
+	<script src='../../js/OBJLoader.js'></script>
+	<script src='../../js/MTLLoader.js'></script>
+	<script src='../../js/GLTFLoader.js'></script>
+	<script src='../../js/FBXLoader.js'></script>
+	<!-- include jsartookit -->
+	<script src="../../jsartoolkit5/artoolkit.min.js"></script>
+	<script src="../../jsartoolkit5/artoolkit.api.js"></script>
+	<!-- include threex.artoolkit -->
+	<script src="../../threex/threex-artoolkitsource.js"></script>
+	<script src="../../threex/threex-artoolkitcontext.js"></script>
+	<script src="../../threex/threex-arbasecontrols.js"></script>
+	<script src="../../threex/threex-armarkercontrols.js"></script>
+</head>
+
+<!--"Water Drop" (https://skfb.ly/owszz) by gurami.mamaladze is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
+
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+
+<script>
+
+var scene, camera, renderer, clock, deltaTime, totalTime;
+
+var arToolkitSource, arToolkitContext;
+
+var markerRoot1;
+
+var mesh0, mesh1;
+
+initialize();
+animate();
+
+function initialize()
+{
+	scene = new THREE.Scene();
+
+	let ambientLight = new THREE.AmbientLight(0xcccccc, 1.0);
+	scene.add( ambientLight );
+				
+	camera = new THREE.Camera();
+	scene.add(camera);
+
+	renderer = new THREE.WebGLRenderer({
+		antialias : true,
+		alpha: true
+	});
+
+	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+	renderer.setSize( 640, 480 );
+	renderer.domElement.style.position = 'absolute'
+	renderer.domElement.style.top = '0px'
+	renderer.domElement.style.left = '0px'
+	document.body.appendChild( renderer.domElement );
+
+	clock = new THREE.Clock();
+	deltaTime = 0;
+	totalTime = 0;
+	
+	////////////////////////////////////////////////////////////
+	// setup arToolkitSource
+	////////////////////////////////////////////////////////////
+
+	arToolkitSource = new THREEx.ArToolkitSource({
+		sourceType : 'webcam',
+	});
+
+	function onResize()
+	{
+		arToolkitSource.onResize()	
+		arToolkitSource.copySizeTo(renderer.domElement)	
+		if ( arToolkitContext.arController !== null )
+		{
+			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
+		}	
+	}
+
+	arToolkitSource.init(function onReady(){
+		onResize()
+	});
+	
+	// handle resize event
+	window.addEventListener('resize', function(){
+		onResize()
+	});
+	
+	////////////////////////////////////////////////////////////
+	// setup arToolkitContext
+	////////////////////////////////////////////////////////////	
+
+	// create atToolkitContext
+	arToolkitContext = new THREEx.ArToolkitContext({
+		cameraParametersUrl: '../../data/camera_para.dat',
+		detectionMode: 'mono'
+	});
+	
+	// copy projection matrix to camera when initialization complete
+	arToolkitContext.init( function onCompleted(){
+		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
+	});
+
+	////////////////////////////////////////////////////////////
+	// setup markerRoots
+	////////////////////////////////////////////////////////////
+
+	// build markerControls
+	markerRoot1 = new THREE.Group();
+	scene.add(markerRoot1);
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+		type: 'pattern', patternUrl: "../../data/wood.patt",
+	})
+	
+	
+////////////////////////////////////////////////////////////
+// try with GLTFLoader
+////////////////////////////////////////////////////////////
+	
+// 	let fire;
+// 	new THREE.GLTFLoader()
+// 	.load(
+// 		'../../models/flamess/flamess.glb', 
+// 		// called when the resource is loaded
+// 		function ( gltf ) {
+			
+// 			markerRoot1.add( gltf.scene );
+// 			fire = gltf.scene
+
+// 			gltf.animations; // Array<THREE.AnimationClip>
+// 			gltf.scene; // THREE.Group
+// 			gltf.scenes; // Array<THREE.Group>
+// 			gltf.cameras; // Array<THREE.Camera>
+// 			gltf.asset; // Object
+
+// 		}, onProgress, onError);
+	
+
+////////////////////////////////////////////////////////////
+// try with FBXLoader
+////////////////////////////////////////////////////////////
+	
+// 	new FBXLoader().load(
+// 	    '../../models/water/source/water.fbx',
+// 	    function (object){
+// // 		object.traverse(function (child) {
+// // 		    if ((child as THREE.Mesh).isMesh) {
+// // 		        // (child as THREE.Mesh).material = material
+// // 		        if ((child as THREE.Mesh).material) {
+// // 		            ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+// // 		        }
+// // 		    }
+// // 		})
+		
+// 		mesh0 = object.children[0];
+// 		mesh0.scale.set(.01, .01, .01)
+// 		markerRoot1.add(mesh0)
+// 	    }, onProgress, onError);
+
+
+////////////////////////////////////////////////////////////
+// try with MTLLoader and OBJLoader
+////////////////////////////////////////////////////////////
+	
+	new THREE.MTLLoader()
+		.setPath( '../../models/wood/' )
+		.load( 'wood.mtl', function ( materials ) {
+			materials.preload();
+			new THREE.OBJLoader()
+				.setMaterials( materials )
+				.setPath( '../../models/wood/' )
+				.load( 'wood.obj', function ( group ) {
+					mesh0 = group.children[0];
+					mesh0.material.side = THREE.DoubleSide;
+ 					mesh0.position.y = 0;
+					mesh0.scale.set(0.1,0.1,0.1);
+					mesh0.rotation.y = Math.PI * 1.5;
+ 					mesh0.rotation.z = Math.PI / 2;
+					markerRoot1.add(mesh0);
+				}, onProgress, onError );
+	
+		});
+
+
+
+	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
+	function onError(xhr) { console.log( 'An error happened' ); }
+}
+
+
+function update()
+{
+	// update artoolkit on every frame
+	if ( arToolkitSource.ready !== false )
+		arToolkitContext.update( arToolkitSource.domElement );
+}
+
+
+function render()
+{
+	const time = clock.getElapsedTime();
+  	mesh0.position.z = Math.cos( time ) * 0.05;
+	renderer.render( scene, camera );
+}
+
+
+function animate()
+{
+	requestAnimationFrame(animate);
+	deltaTime = clock.getDelta();
+	totalTime += deltaTime;
+	
+	update();
+	render();
+}
+
+</script>
+
+</body>
+</html>

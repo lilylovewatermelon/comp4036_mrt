@@ -124,38 +124,52 @@ function initialize()
 // 	mesh1.rotation.x = -Math.PI/2;
 // 	markerRoot1.add( mesh1 );
 	
-	let fire;
-	new THREE.GLTFLoader()
-	.load(
-		'../../models/flamess/flamess.glb', 
-		// called when the resource is loaded
-		function ( gltf ) {
-			
-			markerRoot1.add( gltf.scene );
-			fire = gltf.scene
-
-			gltf.animations; // Array<THREE.AnimationClip>
-			gltf.scene; // THREE.Group
-			gltf.scenes; // Array<THREE.Group>
-			gltf.cameras; // Array<THREE.Camera>
-			gltf.asset; // Object
-
-		}, onProgress, onError);
+////////////////////////////////////////////////////////////
+// try with GLTFLoader
+////////////////////////////////////////////////////////////
 	
-// 	new FBXLoader().load(
-// 	    '../../models/flamess/flamess.fbx',
-// 	    function (object){
-// 		// object.traverse(function (child) {
-// 		//     if ((child as THREE.Mesh).isMesh) {
-// 		//         // (child as THREE.Mesh).material = material
-// 		//         if ((child as THREE.Mesh).material) {
-// 		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
-// 		//         }
-// 		//     }
-// 		// })
-// 		// object.scale.set(.01, .01, .01)
-// 		markerRoot1.add(object)
-// 	    }, onProgress, onError);
+// 	let fire;
+// 	new THREE.GLTFLoader()
+// 	.load(
+// 		'../../models/flamess/flamess.glb', 
+// 		// called when the resource is loaded
+// 		function ( gltf ) {
+			
+// 			markerRoot1.add( gltf.scene );
+// 			fire = gltf.scene
+
+// 			gltf.animations; // Array<THREE.AnimationClip>
+// 			gltf.scene; // THREE.Group
+// 			gltf.scenes; // Array<THREE.Group>
+// 			gltf.cameras; // Array<THREE.Camera>
+// 			gltf.asset; // Object
+
+// 		}, onProgress, onError);
+	
+
+////////////////////////////////////////////////////////////
+// try with FBXLoader
+////////////////////////////////////////////////////////////
+	
+	new FBXLoader().load(
+	    '../../models/flamess/flamess.fbx',
+	    function (object){
+		// object.traverse(function (child) {
+		//     if ((child as THREE.Mesh).isMesh) {
+		//         // (child as THREE.Mesh).material = material
+		//         if ((child as THREE.Mesh).material) {
+		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+		//         }
+		//     }
+		// })
+		// object.scale.set(.01, .01, .01)
+		markerRoot1.add(object)
+	    }, onProgress, onError);
+
+
+////////////////////////////////////////////////////////////
+// try with MTLLoader and OBJLoader
+////////////////////////////////////////////////////////////
 	
 // 	let mesh0;
 // 	new THREE.MTLLoader()

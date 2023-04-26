@@ -8,6 +8,6 @@ Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 illum 2
-map_Kd grassClover-uv-BaseColor.png
-map_d grassClover-uv-BaseColor.png
+map_Kd textures/grassClover-uv-BaseColor.png
+map_d textures/grassClover-uv-BaseColor.png
 map_Bump -bm 1.000000 grassClover-uv-normal.png

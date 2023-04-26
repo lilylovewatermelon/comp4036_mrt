@@ -131,15 +131,15 @@ function initialize()
 				.load( 'firecircle.obj', function ( group ) {
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
-						     child.material.ambient.setHex(0xFF0000);
+						     //child.material.ambient.setHex(0xFF0000);
 						     child.material.color.setHex(0x00FF00);
 						 }
 					     } );
 					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
-					mesh0.position.y = 0.025;
-					mesh0.scale.set(0.3,0.3,0.3);
-					mesh0.rotation.y = Math.PI / 2;
+					//mesh0.material.side = THREE.DoubleSide;
+// 					mesh0.position.y = 0.025;
+// 					mesh0.scale.set(0.3,0.3,0.3);
+// 					mesh0.rotation.y = Math.PI / 2;
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
 	

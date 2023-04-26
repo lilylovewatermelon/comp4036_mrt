@@ -124,13 +124,14 @@ function initialize()
 // 	mesh1.rotation.x = -Math.PI/2;
 // 	markerRoot1.add( mesh1 );
 	
+	let fire;
 	new THREE.GLTFLoader()
 	.load(
 		'../../models/flamess/flamess.glb', 
 		// called when the resource is loaded
 		function ( gltf ) {
 			
-			scene.add( gltf.scene );
+			markerRoot1.add( gltf.scene );
 			fire = gltf.scene
 
 			// gltf.animations; // Array<THREE.AnimationClip>

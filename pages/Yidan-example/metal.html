@@ -18,7 +18,7 @@
 	<script src="../../threex/threex-armarkercontrols.js"></script>
 </head>
 
-<!--"Gold Coins Material" (https://skfb.ly/onVRp) by chrisg4919 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
+<!--"special gold matrial 2K" (https://skfb.ly/6XnV9) by Bram van Hoof  | 🇳🇱 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
@@ -166,12 +166,12 @@ function initialize()
 	
 	new THREE.MTLLoader()
 		.setPath( '../../models/metal/' )
-		.load( 'metal1.mtl', function ( materials ) {
+		.load( 'metal.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/metal/' )
-				.load( 'metal1.obj', function ( group ) {
+				.load( 'metal.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;

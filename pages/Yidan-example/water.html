@@ -154,7 +154,7 @@ function initialize()
 // 		    }
 // 		})
 		
-		mesh0 = object;
+		mesh0 = object.children[0];
 		mesh0.scale.set(.01, .01, .01)
 		markerRoot1.add(mesh0)
 	    }, onProgress, onError);
@@ -217,8 +217,6 @@ function animate()
 	requestAnimationFrame(animate);
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
-	
-	//mesh0.rotation.x += Math.PI / 2;
 	
 	update();
 	render();

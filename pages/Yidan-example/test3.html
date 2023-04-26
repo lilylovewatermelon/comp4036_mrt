@@ -121,6 +121,7 @@ function initialize()
 	mesh1.rotation.x = -Math.PI/2;
 	markerRoot1.add( mesh1 );
 
+	let mesh0;
 	new THREE.MTLLoader()
 		.setPath( '../../models/firecircle/' )
 		.load( 'firecircle.mtl', function ( materials ) {
@@ -138,7 +139,7 @@ function initialize()
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;
-					mesh0.scale.set(0.01,0.01,0.01);
+					mesh0.scale.set(0,0,0);
  					mesh0.rotation.y = Math.PI / 2;
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
@@ -169,6 +170,9 @@ function animate()
 	requestAnimationFrame(animate);
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
+	
+	//mesh0.scale
+	
 	update();
 	render();
 }

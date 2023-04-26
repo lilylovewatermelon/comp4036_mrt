@@ -174,12 +174,12 @@ function initialize()
 	let mesh0;
 	new THREE.MTLLoader()
 		.setPath( '../../models/flamess/' )
-		.load( 'flamess-origin.mtl', function ( materials ) {
+		.load( 'flamess1.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/flamess/' )
-				.load( 'flamess-origin.obj', function ( group ) {
+				.load( 'flamess1.obj', function ( group ) {
 				
 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 // 					group.traverse( function ( child ) {
@@ -193,7 +193,7 @@ function initialize()
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;
 					mesh0.scale.set(0.5,0.5,0.5);
-					mesh0.rotation.y = Math.PI / 2;
+					mesh0.rotation.y = Math.PI * 1.5;
  					mesh0.rotation.z = Math.PI / 2;
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );

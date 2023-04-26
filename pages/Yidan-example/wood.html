@@ -165,13 +165,13 @@ function initialize()
 ////////////////////////////////////////////////////////////
 	
 	new THREE.MTLLoader()
-		.setPath( '../../models/wood/' )
-		.load( 'wood.mtl', function ( materials ) {
+		.setPath( '../../models/puppy/' )
+		.load( 'puppy.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
-				.setPath( '../../models/wood/' )
-				.load( 'wood.obj', function ( group ) {
+				.setPath( '../../models/puppy/' )
+				.load( 'puppy.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;

@@ -166,12 +166,12 @@ function initialize()
 	
 	new THREE.MTLLoader()
 		.setPath( '../../models/earth/' )
-		.load( 'earth.mtl', function ( materials ) {
+		.load( 'earth1.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/earth/' )
-				.load( 'earth.obj', function ( group ) {
+				.load( 'earth1.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;

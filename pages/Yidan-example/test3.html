@@ -6,6 +6,7 @@
 	<script src='../../js/three.js'></script>
 	<script src='../../js/OBJLoader.js'></script>
 	<script src='../../js/MTLLoader.js'></script>
+	<script src='../../js/GLTFLoader.js'></script>
 	<script src='../../js/FBXLoader.js'></script>
 	<!-- include jsartookit -->
 	<script src="../../jsartoolkit5/artoolkit.min.js"></script>
@@ -123,22 +124,39 @@ function initialize()
 // 	mesh1.rotation.x = -Math.PI/2;
 // 	markerRoot1.add( mesh1 );
 	
-	new FBXLoader().load(
-	    '../../models/flamess/flamess.fbx',
-	    function (object){
-		// object.traverse(function (child) {
-		//     if ((child as THREE.Mesh).isMesh) {
-		//         // (child as THREE.Mesh).material = material
-		//         if ((child as THREE.Mesh).material) {
-		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
-		//         }
-		//     }
-		// })
-		// object.scale.set(.01, .01, .01)
-		markerRoot1.add(object)
-	    }, onProgress, onError);
+	new THREE.GLTFLoader()
+	.load(
+		'../../models/flamess/flamess.glb', 
+		// called when the resource is loaded
+		function ( gltf ) {
+			
+			scene.add( gltf.scene );
+			fire = gltf.scene
+
+			// gltf.animations; // Array<THREE.AnimationClip>
+			// gltf.scene; // THREE.Group
+			// gltf.scenes; // Array<THREE.Group>
+			// gltf.cameras; // Array<THREE.Camera>
+			// gltf.asset; // Object
+
+		}, onProgress, onError);
 	
-	let mesh0;
+// 	new FBXLoader().load(
+// 	    '../../models/flamess/flamess.fbx',
+// 	    function (object){
+// 		// object.traverse(function (child) {
+// 		//     if ((child as THREE.Mesh).isMesh) {
+// 		//         // (child as THREE.Mesh).material = material
+// 		//         if ((child as THREE.Mesh).material) {
+// 		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+// 		//         }
+// 		//     }
+// 		// })
+// 		// object.scale.set(.01, .01, .01)
+// 		markerRoot1.add(object)
+// 	    }, onProgress, onError);
+	
+// 	let mesh0;
 // 	new THREE.MTLLoader()
 // 		.setPath( '../../models/flamess/' )
 // 		.load( 'flamess.mtl', function ( materials ) {

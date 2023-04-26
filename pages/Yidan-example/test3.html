@@ -170,8 +170,6 @@ function initialize()
 ////////////////////////////////////////////////////////////
 // try with MTLLoader and OBJLoader
 ////////////////////////////////////////////////////////////
-	
-	let mesh0;
 	new THREE.MTLLoader()
 		.setPath( '../../models/flamess/' )
 		.load( 'flamess1.mtl', function ( materials ) {
@@ -225,6 +223,10 @@ function animate()
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	
+	
+	update();
+	render();
+	
 	mesh0.rotation.x += 0.01;
 	var up = false;
 	if up {
@@ -234,10 +236,6 @@ function animate()
 		mesh0.position.z -= 10;
 		up = false;
 	}
-	
-	
-	update();
-	render();
 }
 
 </script>

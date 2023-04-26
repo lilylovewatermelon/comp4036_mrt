@@ -139,7 +139,7 @@ function initialize()
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;
-					mesh0.scale.set(0,0,0);
+					mesh0.scale.set(0.01,0.01,0.01);
  					mesh0.rotation.y = Math.PI / 2;
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
@@ -171,7 +171,8 @@ function animate()
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	
-	//mesh0.scale
+	let time = 0.01-0.0025*deltaTime
+	mesh0.scale.set(time, time, time)
 	
 	update();
 	render();

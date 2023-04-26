@@ -9,7 +9,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd -s 2 2 2 low-poly-stylized-plant-tree/textures/BetterMediumWildPlant-00.png
+map_Kd -s 2 2 2 textures/BetterMediumWildPlant-00.png
 
 newmtl leaveys
 Ns 250.000000
@@ -18,5 +18,5 @@ Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 illum 2
-map_Kd low-poly-stylized-plant-tree/source/uplod/pineRoundTexture-00-color-upDown.png
-map_d low-poly-stylized-plant-tree/source/uplod/pineRoundTexture-00-color-upDown.png
+map_Kd textures/pineRoundTexture-00-color-upDown.png
+map_d textures/pineRoundTexture-00-color-upDown.png

@@ -114,15 +114,6 @@ function initialize()
 		type: 'pattern', patternUrl: "../../data/fire.patt",
 	})
 	
-
-	//create a grassy plane on which to put our dog
-// 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-// 	let loader = new THREE.TextureLoader();
-// 	let texture = loader.load( '../../images/building.png', render );
-// 	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
-// 	mesh1 = new THREE.Mesh( geometry1, material1 );
-// 	mesh1.rotation.x = -Math.PI/2;
-// 	markerRoot1.add( mesh1 );
 	
 ////////////////////////////////////////////////////////////
 // try with GLTFLoader
@@ -151,52 +142,55 @@ function initialize()
 // try with FBXLoader
 ////////////////////////////////////////////////////////////
 	
-// 	new FBXLoader().load(
-// 	    '../../models/flamess.fbx',
-// 	    function (object){
-// 		// object.traverse(function (child) {
-// 		//     if ((child as THREE.Mesh).isMesh) {
-// 		//         // (child as THREE.Mesh).material = material
-// 		//         if ((child as THREE.Mesh).material) {
-// 		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
-// 		//         }
-// 		//     }
-// 		// })
-// 		// object.scale.set(.01, .01, .01)
-// 		markerRoot1.add(object)
-// 	    }, onProgress, onError);
+	new FBXLoader().load(
+	    '../../models/water/source/water.fbx',
+	    function (object){
+		// object.traverse(function (child) {
+		//     if ((child as THREE.Mesh).isMesh) {
+		//         // (child as THREE.Mesh).material = material
+		//         if ((child as THREE.Mesh).material) {
+		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+		//         }
+		//     }
+		// })
+		// object.scale.set(.01, .01, .01)
+		mesh0 = object;
+		markerRoot1.add(mesh0)
+	    }, onProgress, onError);
 
 
 ////////////////////////////////////////////////////////////
 // try with MTLLoader and OBJLoader
 ////////////////////////////////////////////////////////////
-	new THREE.MTLLoader()
-		.setPath( '../../models/flamess/' )
-		.load( 'flamess1.mtl', function ( materials ) {
-			materials.preload();
-			new THREE.OBJLoader()
-				.setMaterials( materials )
-				.setPath( '../../models/flamess/' )
-				.load( 'flamess1.obj', function ( group ) {
-				
-					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
-// 					group.traverse( function ( child ) {
-// 					     if ( child instanceof THREE.Mesh ) {
-// 						     //child.material.ambient.setHex(0xFF0000);
-// 						     child.material.color.setHex(0xFF0000);
-// 						     //child.material.map = texture2;
-// 						 }
-// 					     } );
-					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
- 					mesh0.position.y = 0;
-					mesh0.scale.set(0.5,0.5,0.5);
-					mesh0.rotation.y = Math.PI * 1.5;
- 					mesh0.rotation.z = Math.PI / 2;
-					markerRoot1.add(mesh0);
-				}, onProgress, onError );
 	
-		});
+// 	let mesh0;
+// 	new THREE.MTLLoader()
+// 		.setPath( '../../models/flamess/' )
+// 		.load( 'flamess1.mtl', function ( materials ) {
+// 			materials.preload();
+// 			new THREE.OBJLoader()
+// 				.setMaterials( materials )
+// 				.setPath( '../../models/flamess/' )
+// 				.load( 'flamess1.obj', function ( group ) {
+				
+// 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
+// // 					group.traverse( function ( child ) {
+// // 					     if ( child instanceof THREE.Mesh ) {
+// // 						     //child.material.ambient.setHex(0xFF0000);
+// // 						     child.material.color.setHex(0xFF0000);
+// // 						     //child.material.map = texture2;
+// // 						 }
+// // 					     } );
+// 					mesh0 = group.children[0];
+// 					mesh0.material.side = THREE.DoubleSide;
+//  					mesh0.position.y = 0;
+// 					mesh0.scale.set(0.5,0.5,0.5);
+// 					mesh0.rotation.y = Math.PI * 1.5;
+//  					mesh0.rotation.z = Math.PI / 2;
+// 					markerRoot1.add(mesh0);
+// 				}, onProgress, onError );
+	
+// 		});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
@@ -213,9 +207,6 @@ function update()
 
 function render()
 {
-	mesh0.rotation.x += 0.01;
-	const time = clock.getElapsedTime();
-  	mesh0.position.z = Math.cos( time ) * 0.05;
 	renderer.render( scene, camera );
 }
 
@@ -226,12 +217,10 @@ function animate()
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	
+	//mesh0.rotation.x += Math.PI / 2;
 	
 	update();
 	render();
-	
-	
-
 }
 
 </script>

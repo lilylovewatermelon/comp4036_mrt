@@ -6,7 +6,7 @@
 	<script src='../../js/three.js'></script>
 	<script src='../../js/OBJLoader.js'></script>
 	<script src='../../js/MTLLoader.js'></script>
-	<script src='../../js/GLTFLoader.js'></script>
+	<script src='../../js/FBXLoader.js'></script>
 	<!-- include jsartookit -->
 	<script src="../../jsartoolkit5/artoolkit.min.js"></script>
 	<script src="../../jsartoolkit5/artoolkit.api.js"></script>
@@ -123,34 +123,48 @@ function initialize()
 // 	mesh1.rotation.x = -Math.PI/2;
 // 	markerRoot1.add( mesh1 );
 	
-
-	let mesh0;
-	new THREE.MTLLoader()
-		.setPath( '../../models/flamess/' )
-		.load( 'flamess.mtl', function ( materials ) {
-			materials.preload();
-			new THREE.OBJLoader()
-				.setMaterials( materials )
-				.setPath( '../../models/flamess/' )
-				.load( 'flamess.obj', function ( group ) {
-				
-					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
-// 					group.traverse( function ( child ) {
-// 					     if ( child instanceof THREE.Mesh ) {
-// 						     //child.material.ambient.setHex(0xFF0000);
-// 						     child.material.color.setHex(0xFF0000);
-// 						     //child.material.map = texture2;
-// 						 }
-// 					     } );
-					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
- 					mesh0.position.y = 0;
-					mesh0.scale.set(0.5,0.5,0.5);
- 					//mesh0.rotation.y = Math.PI / 2;
-					markerRoot1.add(mesh0);
-				}, onProgress, onError );
+	new FBXLoader().load(
+	    '../../models/flamess.fbx',
+	    function (object){
+		// object.traverse(function (child) {
+		//     if ((child as THREE.Mesh).isMesh) {
+		//         // (child as THREE.Mesh).material = material
+		//         if ((child as THREE.Mesh).material) {
+		//             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+		//         }
+		//     }
+		// })
+		// object.scale.set(.01, .01, .01)
+		markerRoot1.add(object)
+	    }, onProgress, onError);
 	
-		});
+	let mesh0;
+// 	new THREE.MTLLoader()
+// 		.setPath( '../../models/flamess/' )
+// 		.load( 'flamess.mtl', function ( materials ) {
+// 			materials.preload();
+// 			new THREE.OBJLoader()
+// 				.setMaterials( materials )
+// 				.setPath( '../../models/flamess/' )
+// 				.load( 'flamess.obj', function ( group ) {
+				
+// 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
+// // 					group.traverse( function ( child ) {
+// // 					     if ( child instanceof THREE.Mesh ) {
+// // 						     //child.material.ambient.setHex(0xFF0000);
+// // 						     child.material.color.setHex(0xFF0000);
+// // 						     //child.material.map = texture2;
+// // 						 }
+// // 					     } );
+// 					mesh0 = group.children[0];
+// 					mesh0.material.side = THREE.DoubleSide;
+//  					mesh0.position.y = 0;
+// 					mesh0.scale.set(0.5,0.5,0.5);
+//  					//mesh0.rotation.y = Math.PI / 2;
+// 					markerRoot1.add(mesh0);
+// 				}, onProgress, onError );
+	
+// 		});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }

@@ -174,12 +174,12 @@ function initialize()
 	let mesh0;
 	new THREE.MTLLoader()
 		.setPath( '../../models/flamess/' )
-		.load( 'flamess.mtl', function ( materials ) {
+		.load( 'flamess-origin.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/flamess/' )
-				.load( 'flamess.obj', function ( group ) {
+				.load( 'flamess-origin.obj', function ( group ) {
 				
 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 // 					group.traverse( function ( child ) {

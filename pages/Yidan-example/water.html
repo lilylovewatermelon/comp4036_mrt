@@ -165,22 +165,13 @@ function initialize()
 ////////////////////////////////////////////////////////////
 	
 	new THREE.MTLLoader()
-		.setPath( '../../models/puppy/' )
-		.load( 'puppy.mtl', function ( materials ) {
+		.setPath( '../../models/water/water-drop/' )
+		.load( 'waterdrop.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
-				.setPath( '../../models/puppy/' )
-				.load( 'puppy.obj', function ( group ) {
-				
-					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
-// 					group.traverse( function ( child ) {
-// 					     if ( child instanceof THREE.Mesh ) {
-// 						     //child.material.ambient.setHex(0xFF0000);
-// 						     child.material.color.setHex(0xFF0000);
-// 						     //child.material.map = texture2;
-// 						 }
-// 					     } );
+				.setPath( '../../models/water/water-drop/' )
+				.load( 'waterdrop.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;
@@ -191,6 +182,8 @@ function initialize()
 				}, onProgress, onError );
 	
 		});
+
+
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }

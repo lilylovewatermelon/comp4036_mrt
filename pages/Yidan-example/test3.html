@@ -150,15 +150,22 @@ function initialize()
 				.setMaterials( materials )
 				.setPath( '../../models/firecircle/' )
 				.load( 'firecircle.obj', function ( group ) {
+					group.traverse( function ( child ) {
+					     if ( child instanceof THREE.Mesh ) {
+						  //child.material.ambient.setHex(0xFF0000);
+						  child.material.color.setHex(0xFC4F00);
+						 }
+					     } );
 					mesh0 = group.children[0];
 					//mesh0.material.side = THREE.DoubleSide;
 					//mesh0.metarial.color = new THREE.Color( 0xFC4F00 );
-					//mesh0.position.y = 0.025;
+					mesh0.position.y = 0.025;
 					//mesh0.setColor(0xFC4F00)
 					mesh0.scale.set(1.0,1.0,1.0);
-					//mesh0.rotation.y = Math.PI / 2;
+					mesh0.rotation.y = Math.PI / 2;
 					markerRoot1.add(mesh0);
 				}, onProgress, onError );
+	
 		});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }

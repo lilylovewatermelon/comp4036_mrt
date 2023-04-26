@@ -1,0 +1,13 @@
+# Blender 3.5.1 MTL File: 'wood.blend'
+# www.blender.org
+
+newmtl LeavesSigs
+Ns 32.000008
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.295976 0.037941
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Ke LeavesSigs_emissive.png
+map_Bump -bm 1.000000 LeavesSigs_normal.png

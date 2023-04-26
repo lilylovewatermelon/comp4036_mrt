@@ -19,7 +19,7 @@
 </head>
 
 <!--"Low Poly Stylized Plant Tree" (https://skfb.ly/orzuu) by Natural_Disbuster is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
-
+<!--"Stylized Tropical Grass" (https://skfb.ly/oy6nO) by Natural_Disbuster is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
 <script>
@@ -166,12 +166,12 @@ function initialize()
 	
 	new THREE.MTLLoader()
 		.setPath( '../../models/wood/' )
-		.load( 'wood.mtl', function ( materials ) {
+		.load( 'wood1.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/wood/' )
-				.load( 'wood.obj', function ( group ) {
+				.load( 'wood1.obj', function ( group ) {
 					mesh0 = group.children[0];
 					mesh0.material.side = THREE.DoubleSide;
  					mesh0.position.y = 0;

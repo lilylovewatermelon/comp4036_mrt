@@ -36,80 +36,82 @@ function initialize()
 {
 	scene = new THREE.Scene();
 
-	let ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
-	scene.add( ambientLight );
+	// let ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
+	// scene.add( ambientLight );
 				
-	camera = new THREE.Camera();
+	camera = new THREE.PerspectiveCamera(
+		75,
+		window.innerWidth/window.innerHeight,
+		0.01,
+		1000
+	);
 	scene.add(camera);
 
-	renderer = new THREE.WebGLRenderer({
-		antialias : true,
-		alpha: true
-	});
+	renderer = new THREE.WebGLRenderer();
 
-	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	renderer.setSize( 640, 480 );
-	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top = '0px'
-	renderer.domElement.style.left = '0px'
+	//renderer.setClearColor(new THREE.Color('lightgrey'), 0)
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	// renderer.domElement.style.position = 'absolute'
+	// renderer.domElement.style.top = '0px'
+	// renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
 
-	clock = new THREE.Clock();
-	deltaTime = 0;
-	totalTime = 0;
+	// clock = new THREE.Clock();
+	// deltaTime = 0;
+	// totalTime = 0;
 	
 	////////////////////////////////////////////////////////////
 	// setup arToolkitSource
 	////////////////////////////////////////////////////////////
 
-	arToolkitSource = new THREEx.ArToolkitSource({
-		sourceType : 'webcam',
-	});
+	// arToolkitSource = new THREEx.ArToolkitSource({
+	// 	sourceType : 'webcam',
+	// });
 
-	function onResize()
-	{
-		arToolkitSource.onResize()	
-		arToolkitSource.copySizeTo(renderer.domElement)	
-		if ( arToolkitContext.arController !== null )
-		{
-			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
-		}	
-	}
+	// function onResize()
+	// {
+	// 	arToolkitSource.onResize()	
+	// 	arToolkitSource.copySizeTo(renderer.domElement)	
+	// 	if ( arToolkitContext.arController !== null )
+	// 	{
+	// 		arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)	
+	// 	}	
+	// }
 
-	arToolkitSource.init(function onReady(){
-		onResize()
-	});
+	// arToolkitSource.init(function onReady(){
+	// 	onResize()
+	// });
 	
-	// handle resize event
-	window.addEventListener('resize', function(){
-		onResize()
-	});
+	// // handle resize event
+	// window.addEventListener('resize', function(){
+	// 	onResize()
+	// });
 	
 	////////////////////////////////////////////////////////////
 	// setup arToolkitContext
 	////////////////////////////////////////////////////////////	
 
 	// create atToolkitContext
-	arToolkitContext = new THREEx.ArToolkitContext({
-		cameraParametersUrl: '../../data/camera_para.dat',
-		detectionMode: 'mono'
-	});
+	// arToolkitContext = new THREEx.ArToolkitContext({
+	// 	cameraParametersUrl: '../../data/camera_para.dat',
+	// 	detectionMode: 'mono'
+	// });
 	
-	// copy projection matrix to camera when initialization complete
-	arToolkitContext.init( function onCompleted(){
-		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
-	});
+	// // copy projection matrix to camera when initialization complete
+	// arToolkitContext.init( function onCompleted(){
+	// 	camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
+	// });
 
 	////////////////////////////////////////////////////////////
 	// setup markerRoots
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerRoot1 = new THREE.Group();
-	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'pattern', patternUrl: "../../data/fire.patt",
-	})
+	// markerRoot1 = new THREE.Group();
+	// scene.add(markerRoot1);
+	// let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+	// 	type: 'pattern', patternUrl: "../../data/fire.patt",
+	// })
 
 	
 
@@ -130,7 +132,7 @@ function initialize()
 		// called when the resource is loaded
 		function ( gltf ) {
 			
-			markerRoot1.add( gltf.scene );
+			scene.add( gltf.scene );
 			fire = gltf.scene
 
 			// gltf.animations; // Array<THREE.AnimationClip>
@@ -140,6 +142,11 @@ function initialize()
 			// gltf.asset; // Object
 
 		}, onProgress, onError);
+
+	scene.background = new THREE.Color(0xFFFFFF);
+	var light = new THREE.HemisphereLight(0xffffff, 0x000000, 2);
+	scene.add(light);
+	camera.position.set(0,0,100);
 
 
 	// new THREE.MTLLoader()
@@ -165,12 +172,12 @@ function initialize()
 }
 
 
-function update()
-{
-	// update artoolkit on every frame
-	if ( arToolkitSource.ready !== false )
-		arToolkitContext.update( arToolkitSource.domElement );
-}
+// function update()
+// {
+// 	// update artoolkit on every frame
+// 	if ( arToolkitSource.ready !== false )
+// 		arToolkitContext.update( arToolkitSource.domElement );
+// }
 
 
 function render()
@@ -182,9 +189,9 @@ function render()
 function animate()
 {
 	requestAnimationFrame(animate);
-	deltaTime = clock.getDelta();
-	totalTime += deltaTime;
-	update();
+	// deltaTime = clock.getDelta();
+	// totalTime += deltaTime;
+	//update();
 	render();
 }
 

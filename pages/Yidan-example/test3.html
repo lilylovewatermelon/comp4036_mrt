@@ -36,7 +36,7 @@ function initialize()
 {
 	scene = new THREE.Scene();
 
-	let ambientLight = new THREE.AmbientLight( 0xFF0000);
+	let ambientLight = new THREE.AmbientLight(0xcccccc, 1.0);
 	scene.add( ambientLight );
 				
 	camera = new THREE.Camera();
@@ -132,11 +132,11 @@ function initialize()
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
 						     //child.material.ambient.setHex(0xFF0000);
-						     child.material.color.setHex(0x00FF00);
+						     child.material.color.setHex(0xFF0000);
 						 }
 					     } );
 					mesh0 = group.children[0];
-					//mesh0.material.side = THREE.DoubleSide;
+					mesh0.material.side = THREE.DoubleSide;
 // 					mesh0.position.y = 0.025;
 // 					mesh0.scale.set(0.3,0.3,0.3);
 // 					mesh0.rotation.y = Math.PI / 2;

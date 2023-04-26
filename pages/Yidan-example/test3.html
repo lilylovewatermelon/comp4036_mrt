@@ -105,21 +105,21 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerRoot1 = new THREE.Group();
-	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+// 	markerRoot1 = new THREE.Group();
+// 	scene.add(markerRoot1);
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, scene, {
 		type: 'pattern', patternUrl: "../../data/fire.patt",
 	})
 	
 
 	//create a grassy plane on which to put our dog
-	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-	let loader = new THREE.TextureLoader();
-	let texture = loader.load( '../../images/building.png', render );
-	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
-	mesh1 = new THREE.Mesh( geometry1, material1 );
-	mesh1.rotation.x = -Math.PI/2;
-	markerRoot1.add( mesh1 );
+// 	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
+// 	let loader = new THREE.TextureLoader();
+// 	let texture = loader.load( '../../images/building.png', render );
+// 	let material1 = new THREE.MeshBasicMaterial( { map: texture } );
+// 	mesh1 = new THREE.Mesh( geometry1, material1 );
+// 	mesh1.rotation.x = -Math.PI/2;
+// 	markerRoot1.add( mesh1 );
 
 	let mesh0;
 	new THREE.MTLLoader()
@@ -131,12 +131,12 @@ function initialize()
 				.setPath( '../../models/firecircle/' )
 				.load( 'firecircle.obj', function ( group ) {
 				
-					let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
+					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
 						     //child.material.ambient.setHex(0xFF0000);
-						     //child.material.color.setHex(0xFF0000);
-						     child.material.map = texture2;
+						     child.material.color.setHex(0xFF0000);
+						     //child.material.map = texture2;
 						 }
 					     } );
 					mesh0 = group.children[0];
@@ -144,7 +144,7 @@ function initialize()
  					mesh0.position.y = 0;
 					mesh0.scale.set(0.01,0.01,0.01);
  					mesh0.rotation.y = Math.PI / 2;
-					markerRoot1.add(mesh0);
+					scene.add(mesh0);
 				}, onProgress, onError );
 	
 		});

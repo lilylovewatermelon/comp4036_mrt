@@ -165,13 +165,13 @@ function initialize()
 ////////////////////////////////////////////////////////////
 	
 	new THREE.MTLLoader()
-		.setPath( '../../models/water/' )
-		.load( 'Drops.mtl', function ( materials ) {
+		.setPath( '../../models/puppy/' )
+		.load( 'puppy.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
-				.setPath( '../../models/water/' )
-				.load( 'Drops.obj', function ( group ) {
+				.setPath( '../../models/puppy/' )
+				.load( 'puppy.obj', function ( group ) {
 				
 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 // 					group.traverse( function ( child ) {

@@ -121,26 +121,6 @@ function initialize()
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
 	markerRoot1.add( mesh1 );
-	
-// 	let fire;
-// 	//now we'll load in the dog complete with material
-// 	new THREE.GLTFLoader()
-// 	.load(
-// 		'./models/fire/scene.gltf', 
-// 		// called when the resource is loaded
-// 		function ( gltf ) {
-			
-// 			scene.add( gltf.scene );
-// 			fire = gltf.scene
-
-// 			// gltf.animations; // Array<THREE.AnimationClip>
-// 			// gltf.scene; // THREE.Group
-// 			// gltf.scenes; // Array<THREE.Group>
-// 			// gltf.cameras; // Array<THREE.Camera>
-// 			// gltf.asset; // Object
-
-// 		}, onProgress, onError);
-
 
 	new THREE.MTLLoader()
 		.setPath( '../../models/firecircle/' )
@@ -156,8 +136,8 @@ function initialize()
 						 }
 					     } );
 					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
-					mesh0.position.y = 0.025;
+					//mesh0.material.side = THREE.DoubleSide;
+					//mesh0.position.y = 0;
 					mesh0.scale.set(0.3,0.3,0.3);
 					//mesh0.rotation.y = Math.PI / 2;
 					markerRoot1.add(mesh0);

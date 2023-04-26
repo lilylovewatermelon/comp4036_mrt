@@ -1,13 +1,22 @@
 # Blender 3.5.1 MTL File: 'wood.blend'
 # www.blender.org
 
-newmtl cloversMat
-Ns 32.000008
+newmtl barkeys.001
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.500000
+Ni 1.450000
 d 1.000000
 illum 2
-map_Kd cloversMat_baseColor.png
-map_Bump -bm 1.000000 cloversMat_normal.png
+map_Kd -s 2 2 2 /Users/yidan/University/Academic/Year4/Mixed Reality/cw/cw2/source/low-poly-stylized-plant-tree/source/uplod/BetterMediumWildPlant-00.png
+
+newmtl leaveys.001
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd /Users/yidan/University/Academic/Year4/Mixed Reality/cw/cw2/source/low-poly-stylized-plant-tree/source/uplod/pineRoundTexture-00-color-upDown.png
+map_d /Users/yidan/University/Academic/Year4/Mixed Reality/cw/cw2/source/low-poly-stylized-plant-tree/source/uplod/pineRoundTexture-00-color-upDown.png

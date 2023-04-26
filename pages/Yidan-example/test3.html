@@ -130,10 +130,13 @@ function initialize()
 				.setMaterials( materials )
 				.setPath( '../../models/firecircle/' )
 				.load( 'firecircle.obj', function ( group ) {
+				
+					var texture2 = new THREE.TextureLoader().load('../../models/fire/textures/fire3lambert1_baseColor.png');
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
 						     //child.material.ambient.setHex(0xFF0000);
-						     child.material.color.setHex(0xFF0000);
+						     //child.material.color.setHex(0xFF0000);
+						     child.material.map = texture2;
 						 }
 					     } );
 					mesh0 = group.children[0];
@@ -170,9 +173,6 @@ function animate()
 	requestAnimationFrame(animate);
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
-	
-	let time = 0.01-0.0025*deltaTime
-	mesh0.scale.set(time, time, time)
 	
 	update();
 	render();

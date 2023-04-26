@@ -213,9 +213,9 @@ function update()
 
 function render()
 {
-	//mesh0.rotation.x += 0.01;
+	mesh0.rotation.x += 0.01;
 	const time = clock.getElapsedTime();
-  	mesh0.position.z = Math.cos( time ) * 0.2;
+  	mesh0.position.z = Math.cos( time ) * 0.05;
 	renderer.render( scene, camera );
 }
 

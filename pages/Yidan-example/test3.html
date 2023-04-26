@@ -36,7 +36,7 @@ function initialize()
 {
 	scene = new THREE.Scene();
 
-	let ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
+	let ambientLight = new THREE.AmbientLight( 0x404040, 1.0 );
 	scene.add( ambientLight );
 				
 	camera = new THREE.Camera();
@@ -152,7 +152,7 @@ function initialize()
 				.load( 'firecircle.obj', function ( group ) {
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
-						  child.material.ambient.setHex(0xFF0000);
+						  //child.material.ambient.setHex(0xFF0000);
 						  child.material.color.setHex(0xFC4F00);
 						 }
 					     } );

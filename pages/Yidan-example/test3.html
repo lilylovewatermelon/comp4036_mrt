@@ -131,7 +131,7 @@ function initialize()
 				.setPath( '../../models/firecircle/' )
 				.load( 'firecircle.obj', function ( group ) {
 				
-					var texture2 = new THREE.TextureLoader().load('../../models/fire/textures/fire3lambert1_baseColor.png');
+					let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 					group.traverse( function ( child ) {
 					     if ( child instanceof THREE.Mesh ) {
 						     //child.material.ambient.setHex(0xFF0000);

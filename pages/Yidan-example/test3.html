@@ -107,9 +107,9 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-// 	markerRoot1 = new THREE.Group();
-// 	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, scene, {
+	markerRoot1 = new THREE.Group();
+	scene.add(markerRoot1);
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 		type: 'pattern', patternUrl: "../../data/fire.patt",
 	})
 	
@@ -123,36 +123,36 @@ function initialize()
 // 	mesh1.rotation.x = -Math.PI/2;
 // 	markerRoot1.add( mesh1 );
 	
-	let fire;
-	//now we'll load in the dog complete with material
-	new THREE.GLTFLoader()
-	.load(
-		'../../models/fire/scene.gltf', 
-		// called when the resource is loaded
-		function ( gltf ) {
+// 	let fire;
+// 	//now we'll load in the dog complete with material
+// 	new THREE.GLTFLoader()
+// 	.load(
+// 		'../../models/fire/scene.gltf', 
+// 		// called when the resource is loaded
+// 		function ( gltf ) {
 			
-			scene.add( gltf.scene );
-			fire = gltf.scene
+// 			scene.add( gltf.scene );
+// 			fire = gltf.scene
 
-			gltf.animations; // Array<THREE.AnimationClip>
-			gltf.scene; // THREE.Group
-			gltf.scenes; // Array<THREE.Group>
-			gltf.cameras; // Array<THREE.Camera>
-			gltf.asset; // Object
+// 			gltf.animations; // Array<THREE.AnimationClip>
+// 			gltf.scene; // THREE.Group
+// 			gltf.scenes; // Array<THREE.Group>
+// 			gltf.cameras; // Array<THREE.Camera>
+// 			gltf.asset; // Object
 
-		}, onProgress, onError);
+// 		}, onProgress, onError);
 
-// 	let mesh0;
-// 	new THREE.MTLLoader()
-// 		.setPath( '../../models/firecircle/' )
-// 		.load( 'firecircle.mtl', function ( materials ) {
-// 			materials.preload();
-// 			new THREE.OBJLoader()
-// 				.setMaterials( materials )
-// 				.setPath( '../../models/firecircle/' )
-// 				.load( 'firecircle.obj', function ( group ) {
+	let mesh0;
+	new THREE.MTLLoader()
+		.setPath( '../../models/flamess/' )
+		.load( 'flamess.mtl', function ( materials ) {
+			materials.preload();
+			new THREE.OBJLoader()
+				.setMaterials( materials )
+				.setPath( '../../models/flamess/' )
+				.load( 'flamess.obj', function ( group ) {
 				
-// 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
+					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 // 					group.traverse( function ( child ) {
 // 					     if ( child instanceof THREE.Mesh ) {
 // 						     //child.material.ambient.setHex(0xFF0000);
@@ -160,15 +160,15 @@ function initialize()
 // 						     //child.material.map = texture2;
 // 						 }
 // 					     } );
-// 					mesh0 = group.children[0];
-// 					mesh0.material.side = THREE.DoubleSide;
-//  					mesh0.position.y = 0;
-// 					mesh0.scale.set(0.01,0.01,0.01);
-//  					mesh0.rotation.y = Math.PI / 2;
-// 					scene.add(mesh0);
-// 				}, onProgress, onError );
+					mesh0 = group.children[0];
+					mesh0.material.side = THREE.DoubleSide;
+ 					mesh0.position.y = 0;
+					mesh0.scale.set(1.25,1.25,1.25);
+ 					mesh0.rotation.y = Math.PI / 2;
+					markerRoot1.add(mesh0);
+				}, onProgress, onError );
 	
-// 		});
+		});
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }

@@ -213,7 +213,15 @@ function update()
 
 function render()
 {
-	mesh0.rotation.x += 0.01;
+	mesh0.rotation.y += 0.01;
+	var up = false;
+	if up {
+		mesh0.position.z += 10;
+		up = true;
+	}else{
+		mesh0.position.z -= 10;
+		up = false;
+	}
 	renderer.render( scene, camera );
 }
 
@@ -229,14 +237,7 @@ function animate()
 	render();
 	
 	
-// 	var up = false;
-// 	if up {
-// 		mesh0.position.z += 10;
-// 		up = true;
-// 	}else{
-// 		mesh0.position.z -= 10;
-// 		up = false;
-// 	}
+
 }
 
 </script>

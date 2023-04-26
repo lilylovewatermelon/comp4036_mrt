@@ -111,7 +111,7 @@ function initialize()
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
 	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'pattern', patternUrl: "../../data/fire.patt",
+		type: 'pattern', patternUrl: "../../data/water.patt",
 	})
 	
 	
@@ -166,12 +166,12 @@ function initialize()
 	
 	new THREE.MTLLoader()
 		.setPath( '../../models/water/' )
-		.load( 'drops.mtl', function ( materials ) {
+		.load( 'Drops.mtl', function ( materials ) {
 			materials.preload();
 			new THREE.OBJLoader()
 				.setMaterials( materials )
 				.setPath( '../../models/water/' )
-				.load( 'drops.obj', function ( group ) {
+				.load( 'Drops.obj', function ( group ) {
 				
 					//let texture2 = loader.load('../../models/fire/textures/fire3lambert1_baseColor.png', render);
 // 					group.traverse( function ( child ) {
